@@ -29,12 +29,14 @@ public class InterfaceCreator {
     }
 
     public Function<List<String>, Map<String, Integer>> stringSize() {
-        return (list) -> list.stream().collect(Collectors.toMap(s->s, String::length));
+        return strings -> strings.stream().collect(Collectors.toMap(s->s, String::length));
     }
 
     public BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
-        return (first, second) -> new ArrayList<>(first){{
-            addAll(second);
-        }};
+        return (first, second) -> {
+          List<Integer> result = new ArrayList<>(first);
+          result.addAll(second);
+          return result;
+        };
     }
 }
